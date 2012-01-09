@@ -39,7 +39,7 @@ function HideAndShow(opts) {
 	
 	this.hideOptions['sync'] = true;
 	this.showOptions['sync'] = true;
-	$$('.section-img-controls-number a').each(function(s){
+	self.$$('.section-img-controls-number a').each(function(s){
     $(s).observe('click', function(event){
 			self.stop(); 
 			if (self.$(self.current) != self.$(s)) {
@@ -49,7 +49,7 @@ function HideAndShow(opts) {
     });
 	});
 	
-	$$('.section-img-buttons a').each(function(s){
+	self.$$('.section-img-buttons a').each(function(s){
     $(s).observe('click', function(event){
         self.stop();
         if ('previous' == s.getAttribute("data-control")) {
@@ -142,4 +142,16 @@ function HideAndShow(opts) {
 	this.$ = function(o) {
 		return document.getElementById(o);
 	}
+
+    this.$$ = function(klass, name) {
+        var classes = document.getElementsByClassName(klass);
+        var nodes = [];
+        for(var i=0; i < classes.length; i++) {
+            var ns = classes[0].getElementsBySelector(name);
+            for(var j=0; j < ns.length; j++) {
+                nodes.push(ns[j]]);
+            }
+        }
+        return nodes;
+    }    
 }
